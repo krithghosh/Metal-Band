@@ -19,14 +19,12 @@ public interface RestApiService {
 
     @GET(BAND_SEARCH_URL)
     Observable<BandSearchResponse> getBandSearch(
-            @Path("search_type") String searchType,
             @Path("keyword") String keyword,
             @Query("api_key") String apiKey
     );
 
     @GET(BAND_DETAIL_URL)
     Observable<BandDetailResponse> getBandDetails(
-            @Path("band") String band,
             @Path("band_id") String bandId,
             @Query("api_key") String apiKey
     );

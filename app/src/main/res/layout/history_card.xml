@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/history_card_height"
+    android:background="@drawable/search_box_bgd"
+    android:orientation="vertical"
+    android:padding="@dimen/card_padding_half">
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/small_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top" />
+
+    <TextView
+        android:id="@+id/tv_genre"
+        style="@style/small_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|bottom" />
+
+    <TextView
+        android:id="@+id/tv_country"
+        style="@style/small_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom" />
+</FrameLayout>

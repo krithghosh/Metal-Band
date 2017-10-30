@@ -1,8 +1,5 @@
 package com.kritartha.blacklanechallenge.model.bandDetail;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

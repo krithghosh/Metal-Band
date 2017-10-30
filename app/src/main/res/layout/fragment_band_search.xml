@@ -1,7 +1,43 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kritartha.blacklanechallenge.View.fragment.BandSearchFragment">
+    android:orientation="vertical"
+    android:paddingBottom="24dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="8dp"
+    tools:context="com.kritartha.blacklanechallenge.view.fragment.BandSearchFragment">
 
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_gravity="top"
+        android:background="@drawable/search_box_bgd"
+        android:drawablePadding="16dp"
+        android:focusableInTouchMode="true"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingLeft="8dp"
+        android:textAppearance="@style/normal_text" />
+
+    <android.support.v7.widget.ListViewCompat
+        android:id="@+id/lv_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/search_list_view_bgd"
+        android:divider="@color/color_border"
+        android:dividerHeight="0.4dp"
+        android:listSelector="@color/color_accent_op_10" />
+
+    <LinearLayout
+        android:id="@+id/ll_search_history_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical" />
 </FrameLayout>

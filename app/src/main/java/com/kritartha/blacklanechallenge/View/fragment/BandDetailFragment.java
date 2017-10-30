@@ -1,4 +1,4 @@
-package com.kritartha.blacklanechallenge.View.fragment;
+package com.kritartha.blacklanechallenge.view.fragment;
 
 
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kritartha.blacklanechallenge.MetalBandApplication;
 import com.kritartha.blacklanechallenge.R;
 
 import butterknife.ButterKnife;
@@ -26,6 +27,11 @@ public class BandDetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        injectModules();
+    }
+
+    private void injectModules() {
+        MetalBandApplication.getAppComponent().inject(this);
     }
 
     @Override

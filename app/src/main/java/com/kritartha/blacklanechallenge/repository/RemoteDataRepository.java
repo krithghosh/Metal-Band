@@ -11,9 +11,6 @@ import javax.inject.Inject;
 import retrofit2.Retrofit;
 import rx.Observable;
 
-import static com.kritartha.blacklanechallenge.utils.Constants.BAND;
-import static com.kritartha.blacklanechallenge.utils.Constants.BAND_SEARCH_TYPE;
-
 /**
  * Created by kritarthaghosh on 29/10/17.
  */
@@ -30,11 +27,11 @@ public class RemoteDataRepository {
 
     public Observable<BandSearchResponse> getBandSearch(String keyword) {
         return retrofit.create(RestApiService.class)
-                .getBandSearch(BAND_SEARCH_TYPE, keyword, BuildConfig.API_KEY);
+                .getBandSearch(keyword, BuildConfig.API_KEY);
     }
 
     public Observable<BandDetailResponse> getBandDetail(String bandId) {
         return retrofit.create(RestApiService.class)
-                .getBandDetails(BAND, bandId, BuildConfig.API_KEY);
+                .getBandDetails(bandId, BuildConfig.API_KEY);
     }
 }

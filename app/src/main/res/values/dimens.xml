@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_quarter">4dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_padding_half">8dp</dimen>
+    <dimen name="card_padding_quarter">4dp</dimen>
+    <dimen name="text_large">18sp</dimen>
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_small">14sp</dimen>
+    <dimen name="border_thin">0.5dp</dimen>
+    <dimen name="border_normal">1dp</dimen>
+    <dimen name="history_card_height">60dp</dimen>
+</resources>

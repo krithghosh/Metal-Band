@@ -1,6 +1,8 @@
 package com.kritartha.blacklanechallenge.component;
 
-import com.kritartha.blacklanechallenge.database.DbModule;
+import com.kritartha.blacklanechallenge.view.activity.BandActivity;
+import com.kritartha.blacklanechallenge.view.fragment.BandDetailFragment;
+import com.kritartha.blacklanechallenge.view.fragment.BandSearchFragment;
 import com.kritartha.blacklanechallenge.module.ApplicationModule;
 import com.kritartha.blacklanechallenge.repository.DataRepository;
 import com.kritartha.blacklanechallenge.repository.LocalDataRepository;
@@ -21,8 +23,7 @@ import retrofit2.Retrofit;
 @Component(modules = {
         ApplicationModule.class,
         NetworkModule.class,
-        RepositoryModule.class,
-        DbModule.class
+        RepositoryModule.class
 })
 public interface ApplicationComponent {
 
@@ -35,4 +36,10 @@ public interface ApplicationComponent {
     void inject(LocalDataRepository localDataRepository);
 
     void inject(RemoteDataRepository remoteDataRepository);
+
+    void inject(BandActivity bandActivity);
+
+    void inject(BandSearchFragment bandSearchFragment);
+
+    void inject(BandDetailFragment bandDetailFragment);
 }

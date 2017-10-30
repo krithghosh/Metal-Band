@@ -3,13 +3,11 @@ package com.kritartha.blacklanechallenge.repository;
 import com.kritartha.blacklanechallenge.model.bandDetail.BandDetailResponse;
 import com.kritartha.blacklanechallenge.model.bandSearch.BandSearchResponse;
 import com.kritartha.blacklanechallenge.model.bandSearch.SearchResult;
-import com.kritartha.blacklanechallenge.model.databaseModel.BandMetadata;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Flowable;
 import rx.Observable;
 
 /**
@@ -28,17 +26,12 @@ public class DataRepository {
         this.remoteDataRepository = remoteDataRepository;
     }
 
-    public Observable<List<BandMetadata>> getBandMetadata() {
+    public Observable<List<SearchResult>> getBandMetadata() {
         return localDataRepository.getBandMetadata();
     }
 
     public void storeBandMetadata(SearchResult searchResult) {
-        BandMetadata metadata = new BandMetadata();
-        metadata.setBandId(searchResult.getId());
-        metadata.setBandName(searchResult.getName());
-        metadata.setCountry(searchResult.getCountry());
-        metadata.setGenre(searchResult.getGenre());
-        localDataRepository.insertBandMetadata(metadata);
+        localDataRepository.insertBandMetadata(searchResult);
     }
 
     public void deleteBandMetadata() {

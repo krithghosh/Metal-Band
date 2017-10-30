@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.kritartha.blacklanechallenge.MetalBandApplication;
 import com.kritartha.blacklanechallenge.database.BandMetadataTable;
-import com.kritartha.blacklanechallenge.model.databaseModel.BandMetadata;
+import com.kritartha.blacklanechallenge.model.bandSearch.SearchResult;
 import com.squareup.sqlbrite.BriteDatabase;
 
 import java.util.List;
@@ -13,8 +13,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import rx.Observable;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by kritarthaghosh on 29/10/17.
@@ -30,17 +28,17 @@ public class LocalDataRepository {
         MetalBandApplication.getAppComponent().inject(this);
     }
 
-    public Observable<List<BandMetadata>> getBandMetadata() {
+    public Observable<List<SearchResult>> getBandMetadata() {
         return db.createQuery(BandMetadataTable.TABLE, BandMetadataTable.QUERY_ALL)
                 .mapToList(BandMetadataTable.Mapper);
     }
 
-    public void insertBandMetadata(BandMetadata item) {
+    public void insertBandMetadata(SearchResult item) {
         BriteDatabase.Transaction transaction = db.newTransaction();
         try {
             db.insert(BandMetadataTable.TABLE, new BandMetadataTable.Builder()
-                    .setBandId(item.getBandId())
-                    .setBandName(item.getBandName())
+                    .setBandId(item.getId())
+                    .setBandName(item.getName())
                     .setGenre(item.getGenre())
                     .setCountry(item.getCountry())
                     .build(), SQLiteDatabase.CONFLICT_REPLACE);

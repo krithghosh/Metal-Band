@@ -58,10 +58,8 @@ public class NetworkModule {
     @Singleton
     OkHttpClient provideOkHttpClient(Cache cache) {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        if (BuildConfig.DEBUG) {
-            logging.setLevel(HttpLoggingInterceptor.Level.HEADERS);
-            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        }
+        logging.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder client = new OkHttpClient.Builder()
                 .readTimeout(45, TimeUnit.SECONDS).connectTimeout(45, TimeUnit.SECONDS)

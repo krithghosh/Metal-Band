@@ -3,7 +3,7 @@ package com.kritartha.blacklanechallenge.database;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import com.kritartha.blacklanechallenge.model.databaseModel.BandMetadata;
+import com.kritartha.blacklanechallenge.model.bandSearch.SearchResult;
 
 import rx.functions.Func1;
 
@@ -64,12 +64,12 @@ public class BandMetadataTable {
         }
     }
 
-    public static final Func1<Cursor, BandMetadata> Mapper = new Func1<Cursor, BandMetadata>() {
+    public static final Func1<Cursor, SearchResult> Mapper = new Func1<Cursor, SearchResult>() {
         @Override
-        public BandMetadata call(Cursor cursor) {
-            BandMetadata obj = new BandMetadata();
-            obj.setBandId(Db.getString(cursor, ID));
-            obj.setBandName(Db.getString(cursor, NAME));
+        public SearchResult call(Cursor cursor) {
+            SearchResult obj = new SearchResult();
+            obj.setId(Db.getString(cursor, ID));
+            obj.setName(Db.getString(cursor, NAME));
             obj.setGenre(Db.getString(cursor, GENRE));
             obj.setCountry(Db.getString(cursor, COUNTRY));
             return obj;

@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import com.kritartha.blacklanechallenge.R;
 import com.kritartha.blacklanechallenge.adapter.SearchHistoryAdapter;
 import com.kritartha.blacklanechallenge.model.bandSearch.SearchResult;
-
 import java.util.ArrayList;
 import java.util.List;
 

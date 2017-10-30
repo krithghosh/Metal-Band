@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.kritartha.blacklanechallenge.R;
 import com.kritartha.blacklanechallenge.view.fragment.BandDetailFragment;
@@ -15,11 +16,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.kritartha.blacklanechallenge.utils.AppUtils.addFragment;
+import static com.kritartha.blacklanechallenge.utils.AppUtils.replaceFragment;
 import static com.kritartha.blacklanechallenge.utils.Constants.PARCELABLE_SEARCH_RESULT;
 import static java.lang.Boolean.TRUE;
 
 public class BandActivity extends AppCompatActivity implements
-        BandSearchFragment.BandSearchEventListener {
+        BandSearchFragment.BandSearchEventListener, BandDetailFragment.BandDetailsEventListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -53,7 +55,7 @@ public class BandActivity extends AppCompatActivity implements
 
     private void setupBandSearchFragment() {
         BandSearchFragment fragment = BandSearchFragment.newInstance(new Bundle());
-        addFragment(fragmentManager, fragment, container, TRUE, BandSearchFragment.class.getName());
+        replaceFragment(fragmentManager, fragment, container, TRUE, BandSearchFragment.class.getName());
     }
 
     @Override
@@ -71,6 +73,11 @@ public class BandActivity extends AppCompatActivity implements
         Bundle bundle = new Bundle();
         bundle.putParcelable(PARCELABLE_SEARCH_RESULT, item);
         BandDetailFragment fragment = BandDetailFragment.newInstance(bundle);
-        addFragment(fragmentManager, fragment, container, TRUE, BandDetailFragment.class.getName());
+        replaceFragment(fragmentManager, fragment, container, TRUE, BandDetailFragment.class.getName());
+    }
+
+    @Override
+    public void showError(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 }

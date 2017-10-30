@@ -15,6 +15,8 @@ public interface BandSearchContract {
         void injectModules();
 
         void updateSearchList(List<SearchResult> searchResults, List<String> names);
+
+        void updateSearchHistoryList(List<SearchResult> searchResults);
     }
 
     interface Presenter {

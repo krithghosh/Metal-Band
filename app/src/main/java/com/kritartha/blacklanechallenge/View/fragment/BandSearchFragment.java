@@ -17,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import com.kritartha.blacklanechallenge.R;
 import com.kritartha.blacklanechallenge.view.BandSearchContract;
 import com.kritartha.blacklanechallenge.model.bandSearch.SearchResult;
 import com.kritartha.blacklanechallenge.utils.RxSearch;
+import com.kritartha.blacklanechallenge.view.customview.SearchHistoryCustomView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,19 +45,20 @@ public class BandSearchFragment extends Fragment implements BandSearchContract.V
         TextWatcher,
         View.OnClickListener,
         View.OnFocusChangeListener,
-        AdapterView.OnItemClickListener {
+        AdapterView.OnItemClickListener,
+        SearchHistoryCustomView.SearchHistoryEventListener {
 
     @BindView(R.id.ll_parent_layout)
-    LinearLayout llParentLayout;
+    FrameLayout llParentLayout;
+
+    @BindView(R.id.ll_search_history_layout)
+    LinearLayout llSearchHistoryLayout;
 
     @BindView(R.id.et_search)
     EditText etSearch;
 
     @BindView(R.id.lv_search)
     ListViewCompat lvSearch;
-
-    @BindView(R.id.rv_history)
-    RecyclerView rvHistory;
 
     @Inject
     BandSearchPresenter mPresenter;
@@ -65,12 +68,22 @@ public class BandSearchFragment extends Fragment implements BandSearchContract.V
     private static final int DEB_TIME = 300;
     private ArrayAdapter<String> dataAdapter = null;
     private BandSearchEventListener mEventListener = null;
+    private SearchHistoryCustomView customView = null;
 
     public BandSearchFragment() {
     }
 
+    @Override
+    public void onSearchHistoryBandSelected(SearchResult searchResult) {
+        etSearch.clearFocus();
+        etSearch.setText("");
+        mEventListener.getBandDetails(searchResult);
+    }
+
     public interface BandSearchEventListener {
         void getBandDetails(SearchResult item);
+
+        void showError(String msg);
     }
 
     public static BandSearchFragment newInstance(Bundle bundle) {
@@ -99,7 +112,7 @@ public class BandSearchFragment extends Fragment implements BandSearchContract.V
 
     @Override
     public void showError(String msg) {
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        mEventListener.showError(msg);
     }
 
     @Override
@@ -111,6 +124,12 @@ public class BandSearchFragment extends Fragment implements BandSearchContract.V
                 new ArrayList<>(names));
         lvSearch.setAdapter(dataAdapter);
         dataAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void updateSearchHistoryList(List<SearchResult> searchResults) {
+        mPresenter.unSubscribeBandHistory();
+        customView.updateList(searchResults);
     }
 
     @Override
@@ -126,6 +145,18 @@ public class BandSearchFragment extends Fragment implements BandSearchContract.V
         super.onViewCreated(view, savedInstanceState);
         setupAdapter();
         setupSearchView();
+        setupSearchHistoryCustomView();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mPresenter.getBandHistory();
+    }
+
+    private void setupSearchHistoryCustomView() {
+        customView = new SearchHistoryCustomView(getContext(), this, null);
+        llSearchHistoryLayout.addView(customView);
     }
 
     private void setupAdapter() {
@@ -210,8 +241,8 @@ public class BandSearchFragment extends Fragment implements BandSearchContract.V
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        SearchResult item = searchResults.get(position);
-        mEventListener.getBandDetails(item);
+        SearchResult searchResult = searchResults.get(position);
+        onSearchHistoryBandSelected(searchResult);
     }
 
     private void hideSoftKeyboard(View view) {

@@ -26,4 +26,16 @@ public class AppUtils {
         }
         transaction.commitAllowingStateLoss();
     }
+
+    public static void replaceFragment(@NonNull FragmentManager fragmentManager,
+                                       @NonNull Fragment fragment, int frameId,
+                                       boolean shouldAddToBackStack,
+                                       String fragmentTag) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(frameId, fragment, fragmentTag);
+        if (shouldAddToBackStack) {
+            transaction.addToBackStack(fragmentTag);
+        }
+        transaction.commitAllowingStateLoss();
+    }
 }

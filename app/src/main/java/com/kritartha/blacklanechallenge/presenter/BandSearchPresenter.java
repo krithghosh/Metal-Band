@@ -97,6 +97,25 @@ public class BandSearchPresenter implements BandSearchContract.Presenter {
 
     @Override
     public void getBandHistory() {
+        mBandHistorySubscription = mDataRepository.getBandMetadata()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<List<SearchResult>>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.d(TAG, "onCompleted: getBandHistory");
+                    }
 
+                    @Override
+                    public void onError(Throwable throwable) {
+                        Log.e(TAG, "onError: getBandHistory", throwable);
+                    }
+
+                    @Override
+                    public void onNext(List<SearchResult> searchResults) {
+                        Log.d(TAG, "onNext: getBandHistory");
+                        mView.updateSearchHistoryList(searchResults);
+                    }
+                });
     }
 }

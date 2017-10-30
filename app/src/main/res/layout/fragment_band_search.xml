@@ -3,6 +3,8 @@
     android:id="@+id/ll_parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:paddingBottom="24dp"
     android:paddingLeft="8dp"
@@ -17,11 +19,17 @@
         android:layout_gravity="top"
         android:background="@drawable/search_box_bgd"
         android:drawablePadding="16dp"
-        android:focusableInTouchMode="true"
         android:inputType="text"
         android:maxLines="1"
         android:paddingLeft="8dp"
         android:textAppearance="@style/normal_text" />
+
+    <LinearLayout
+        android:id="@+id/ll_search_history_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical" />
 
     <android.support.v7.widget.ListViewCompat
         android:id="@+id/lv_search"
@@ -34,10 +42,4 @@
         android:dividerHeight="0.4dp"
         android:listSelector="@color/color_accent_op_10" />
 
-    <LinearLayout
-        android:id="@+id/ll_search_history_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:orientation="vertical" />
 </FrameLayout>

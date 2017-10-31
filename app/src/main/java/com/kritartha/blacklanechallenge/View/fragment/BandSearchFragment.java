@@ -39,6 +39,9 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 public class BandSearchFragment extends Fragment implements BandSearchContract.View,
         TextWatcher,
         View.OnClickListener,
@@ -75,11 +78,11 @@ public class BandSearchFragment extends Fragment implements BandSearchContract.V
     public void onSearchHistoryBandSelected(SearchResult searchResult) {
         etSearch.clearFocus();
         etSearch.setText("");
-        mEventListener.getBandDetails(searchResult);
+        mEventListener.getBandDetails(searchResult, FALSE);
     }
 
     public interface BandSearchEventListener {
-        void getBandDetails(SearchResult item);
+        void getBandDetails(SearchResult item, boolean store);
 
         void showError(String msg);
     }
@@ -240,7 +243,9 @@ public class BandSearchFragment extends Fragment implements BandSearchContract.V
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         SearchResult searchResult = searchResults.get(position);
-        onSearchHistoryBandSelected(searchResult);
+        etSearch.clearFocus();
+        etSearch.setText("");
+        mEventListener.getBandDetails(searchResult, TRUE);
     }
 
     private void hideSoftKeyboard(View view) {

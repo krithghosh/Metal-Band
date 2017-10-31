@@ -7,5 +7,6 @@
     <color name="color_accent_op_10">#1A003143</color>
     <color name="color_white">#FFFFFF</color>
     <color name="color_border">#BDBDBD</color>
-    <color name="color_search_screen">#EFEFEF</color>
+    <color name="color_search_screen">#FDFDFD</color>
+    <color name="color_red">#FC676F</color>
 </resources>

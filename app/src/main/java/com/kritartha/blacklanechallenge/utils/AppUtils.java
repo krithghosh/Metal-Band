@@ -1,9 +1,13 @@
 package com.kritartha.blacklanechallenge.utils;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.Display;
+import android.view.WindowManager;
 
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
@@ -37,5 +41,9 @@ public class AppUtils {
             transaction.addToBackStack(fragmentTag);
         }
         transaction.commitAllowingStateLoss();
+    }
+
+    public static int getScreenWidth() {
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
     }
 }

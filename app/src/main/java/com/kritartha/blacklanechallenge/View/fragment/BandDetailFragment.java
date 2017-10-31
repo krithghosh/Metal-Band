@@ -25,7 +25,11 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.kritartha.blacklanechallenge.utils.AppUtils.getScreenWidth;
 import static com.kritartha.blacklanechallenge.utils.Constants.PARCELABLE_SEARCH_RESULT;
+import static com.kritartha.blacklanechallenge.utils.Constants.PARCELABLE_STORE_SEARCH_RESULT;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 public class BandDetailFragment extends Fragment implements
         BandDetailContract.View {
@@ -42,6 +46,7 @@ public class BandDetailFragment extends Fragment implements
     private SearchResult searchResult = null;
     private BandDetailsEventListener mEventListener = null;
     private BandDetailComponentCustomView customView;
+    private boolean store = TRUE;
 
     public BandDetailFragment() {
     }
@@ -96,7 +101,8 @@ public class BandDetailFragment extends Fragment implements
         if (bundle == null)
             return;
         searchResult = bundle.getParcelable(PARCELABLE_SEARCH_RESULT);
-        if (searchResult != null) {
+        store = bundle.getBoolean(PARCELABLE_STORE_SEARCH_RESULT);
+        if (searchResult != null && store) {
             mPresenter.storeBandSearch(searchResult);
         }
     }
@@ -118,8 +124,9 @@ public class BandDetailFragment extends Fragment implements
         mPresenter.unSubscribeBandDetail();
         Picasso.with(getContext())
                 .load(bandDetailResponse.getData().getPhoto())
-                .noPlaceholder()
-                .fit()
+                .placeholder(R.drawable.placeholder)
+                .resize(getScreenWidth(), ivBand.getHeight())
+                .centerCrop()
                 .into(ivBand);
         customView.updateData(bandDetailResponse);
     }

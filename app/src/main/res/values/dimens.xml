@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="margin_search_layout">60dp</dimen>
+    <dimen name="search_box_height">44dp</dimen>
     <dimen name="margin_medium">16dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_quarter">4dp</dimen>
     <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_padding_high">24dp</dimen>
     <dimen name="card_padding_half">8dp</dimen>
     <dimen name="card_padding_quarter">4dp</dimen>
     <dimen name="text_large">18sp</dimen>
@@ -12,5 +15,10 @@
     <dimen name="border_thin">0.5dp</dimen>
     <dimen name="border_normal">1dp</dimen>
     <dimen name="history_card_height">60dp</dimen>
-    <dimen name="band_image_height">240dp</dimen>
+    <dimen name="band_image_height">200dp</dimen>
+    <dimen name="radius_2">2dp</dimen>
+    <dimen name="elevation_low">2dp</dimen>
+    <dimen name="elevation_medium">4dp</dimen>
+    <dimen name="elevation_high">8dp</dimen>
+    <dimen name="divider_height">0.4dp</dimen>
 </resources>

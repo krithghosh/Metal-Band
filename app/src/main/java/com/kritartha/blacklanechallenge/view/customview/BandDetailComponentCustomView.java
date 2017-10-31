@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.kritartha.blacklanechallenge.R;
@@ -35,6 +36,8 @@ public class BandDetailComponentCustomView extends LinearLayout {
     private TextView tvCountry;
     private TextView tvYear;
     private TextView tvAlbumHeading;
+    private ProgressBar progressBar;
+    private LinearLayout llParentLayout;
     private BandDetailResponse bandDetailResponse;
     private BandAlbumAdapter mAdapter;
     private List<Discography> mAlbum;
@@ -50,6 +53,8 @@ public class BandDetailComponentCustomView extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.custom_view_band_album, this);
         LinearLayout llFirstComponent = (LinearLayout) findViewById(R.id.view_first_component);
         LinearLayout llSecondComponent = (LinearLayout) findViewById(R.id.view_second_component);
+        llParentLayout = (LinearLayout) findViewById(R.id.ll_parent_layout);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         tvAlbumHeading = (TextView) findViewById(R.id.tv_album);
         tvNameHead = (TextView) llFirstComponent.findViewById(R.id.tv_lt_primary);
         tvName = (TextView) llFirstComponent.findViewById(R.id.tv_lt_secondary);
@@ -103,5 +108,7 @@ public class BandDetailComponentCustomView extends LinearLayout {
         }
         mAdapter.updateList(list);
         mAdapter.notifyDataSetChanged();
+        progressBar.setVisibility(GONE);
+        llParentLayout.setVisibility(VISIBLE);
     }
 }

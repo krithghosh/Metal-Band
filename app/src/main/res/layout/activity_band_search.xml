@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/color_search_screen"
-        android:maxHeight="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
         <TextView
@@ -25,11 +25,6 @@
             android:layout_gravity="center"
             android:text="@string/metal_bands" />
     </android.support.v7.widget.Toolbar>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/color_accent_op_10" />
 
     <FrameLayout
         android:id="@+id/content_frame"

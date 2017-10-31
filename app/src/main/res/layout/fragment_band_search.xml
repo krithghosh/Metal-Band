@@ -3,32 +3,31 @@
     android:id="@+id/ll_parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/card_padding_half"
+    android:layout_marginRight="@dimen/card_padding_half"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    android:paddingBottom="24dp"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
-    android:paddingTop="8dp"
+    android:paddingTop="@dimen/card_padding_half"
     tools:context="com.kritartha.blacklanechallenge.view.fragment.BandSearchFragment">
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/et_search"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="@dimen/search_box_height"
         android:layout_gravity="top"
         android:background="@drawable/search_box_bgd"
-        android:drawablePadding="16dp"
+        android:drawablePadding="@dimen/card_padding"
         android:inputType="text"
         android:maxLines="1"
-        android:paddingLeft="8dp"
+        android:paddingLeft="@dimen/card_padding_half"
         android:textAppearance="@style/normal_text" />
 
     <LinearLayout
         android:id="@+id/ll_search_history_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="@dimen/margin_search_layout"
         android:orientation="vertical" />
 
     <android.support.v7.widget.ListViewCompat
@@ -36,10 +35,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="@dimen/search_box_height"
         android:background="@drawable/search_list_view_bgd"
         android:divider="@color/color_border"
-        android:dividerHeight="0.4dp"
+        android:dividerHeight="@dimen/divider_height"
         android:listSelector="@color/color_accent_op_10" />
 
 </FrameLayout>

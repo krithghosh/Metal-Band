@@ -1,30 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    android:paddingBottom="@dimen/card_padding"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <include
-        android:id="@+id/view_first_component"
-        layout="@layout/view_band_detail_component" />
-
-    <include
-        android:id="@+id/view_second_component"
-        layout="@layout/view_band_detail_component" />
-
-    <TextView
-        android:id="@+id/tv_album"
+    <ProgressBar
+        android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/albums"
-        android:textAppearance="@style/search_history_heading" />
+        android:visibility="visible" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_albums"
+    <LinearLayout
+        android:id="@+id/ll_parent_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/card_padding_half" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/view_first_component"
+            layout="@layout/view_band_detail_component" />
+
+        <include
+            android:id="@+id/view_second_component"
+            layout="@layout/view_band_detail_component" />
+
+        <TextView
+            android:id="@+id/tv_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/albums"
+            android:textAppearance="@style/search_history_heading"
+            android:textColor="@color/color_red" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_albums"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/card_padding" />
+    </LinearLayout>
+</FrameLayout>

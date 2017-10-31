@@ -1,9 +1,11 @@
 package com.kritartha.blacklanechallenge.view.activity;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ import butterknife.ButterKnife;
 import static com.kritartha.blacklanechallenge.utils.AppUtils.addFragment;
 import static com.kritartha.blacklanechallenge.utils.AppUtils.replaceFragment;
 import static com.kritartha.blacklanechallenge.utils.Constants.PARCELABLE_SEARCH_RESULT;
+import static com.kritartha.blacklanechallenge.utils.Constants.PARCELABLE_STORE_SEARCH_RESULT;
 import static java.lang.Boolean.TRUE;
 
 public class BandActivity extends AppCompatActivity implements
@@ -56,7 +59,16 @@ public class BandActivity extends AppCompatActivity implements
     private void setupBandSearchFragment() {
         BandSearchFragment fragment = BandSearchFragment.newInstance(new Bundle());
         replaceFragment(fragmentManager, fragment, container, TRUE, BandSearchFragment.class.getName());
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -71,11 +83,13 @@ public class BandActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void getBandDetails(SearchResult item) {
+    public void getBandDetails(SearchResult item, boolean store) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(PARCELABLE_SEARCH_RESULT, item);
+        bundle.putBoolean(PARCELABLE_STORE_SEARCH_RESULT, store);
         BandDetailFragment fragment = BandDetailFragment.newInstance(bundle);
         replaceFragment(fragmentManager, fragment, container, TRUE, BandDetailFragment.class.getName());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

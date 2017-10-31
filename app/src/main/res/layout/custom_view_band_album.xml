@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <include
+        android:id="@+id/view_first_component"
+        layout="@layout/view_band_detail_component" />
+
+    <include
+        android:id="@+id/view_second_component"
+        layout="@layout/view_band_detail_component" />
 
     <TextView
-        android:id="@+id/tv_search_history_heading"
+        android:id="@+id/tv_album"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/search_history"
+        android:text="@string/albums"
         android:textAppearance="@style/search_history_heading" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_history"
+        android:id="@+id/rv_albums"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/card_padding_half" />

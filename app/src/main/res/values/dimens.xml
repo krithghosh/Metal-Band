@@ -12,4 +12,5 @@
     <dimen name="border_thin">0.5dp</dimen>
     <dimen name="border_normal">1dp</dimen>
     <dimen name="history_card_height">60dp</dimen>
+    <dimen name="band_image_height">240dp</dimen>
 </resources>

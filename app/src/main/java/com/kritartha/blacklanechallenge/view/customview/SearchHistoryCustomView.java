@@ -56,11 +56,11 @@ public class SearchHistoryCustomView extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.custom_view_search_history, this);
         recyclerView = (RecyclerView) findViewById(R.id.rv_history);
         tvSearchHistoryHeading = (TextView) findViewById(R.id.tv_search_history_heading);
-        setupEventListAdapter(context);
+        setupAdapter(context);
         setupRecyclerView(context);
     }
 
-    private void setupEventListAdapter(Context context) {
+    private void setupAdapter(Context context) {
         mAdapter = new SearchHistoryAdapter(context, searchResultList);
         mAdapter.setOnItemClickListener(new SearchHistoryAdapter.OnItemClickListener() {
             @Override
@@ -84,6 +84,7 @@ public class SearchHistoryCustomView extends LinearLayout {
         if (searchResults.size() == 0) {
             tvSearchHistoryHeading.setText("No Search History");
         }
+        this.searchResultList = searchResults;
         mAdapter.updateList(searchResults);
         mAdapter.notifyDataSetChanged();
     }

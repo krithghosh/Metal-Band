@@ -43,4 +43,16 @@
         <item name="android:textSize">@dimen/text_large</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
+
+    <style name="category_heading" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/color_primary_dark</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="category_text" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/color_primary_dark</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
 </resources>

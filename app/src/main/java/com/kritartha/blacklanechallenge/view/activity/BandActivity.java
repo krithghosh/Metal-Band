@@ -56,6 +56,7 @@ public class BandActivity extends AppCompatActivity implements
     private void setupBandSearchFragment() {
         BandSearchFragment fragment = BandSearchFragment.newInstance(new Bundle());
         replaceFragment(fragmentManager, fragment, container, TRUE, BandSearchFragment.class.getName());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -66,6 +67,7 @@ public class BandActivity extends AppCompatActivity implements
             return;
         }
         super.onBackPressed();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
     @Override

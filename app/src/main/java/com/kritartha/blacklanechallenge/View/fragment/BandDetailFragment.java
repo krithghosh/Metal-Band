@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.kritartha.blacklanechallenge.MetalBandApplication;
 import com.kritartha.blacklanechallenge.R;
@@ -15,9 +17,12 @@ import com.kritartha.blacklanechallenge.model.bandDetail.BandDetailResponse;
 import com.kritartha.blacklanechallenge.model.bandSearch.SearchResult;
 import com.kritartha.blacklanechallenge.presenter.BandDetailPresenter;
 import com.kritartha.blacklanechallenge.view.BandDetailContract;
+import com.kritartha.blacklanechallenge.view.customview.BandDetailComponentCustomView;
+import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.kritartha.blacklanechallenge.utils.Constants.PARCELABLE_SEARCH_RESULT;
@@ -25,11 +30,18 @@ import static com.kritartha.blacklanechallenge.utils.Constants.PARCELABLE_SEARCH
 public class BandDetailFragment extends Fragment implements
         BandDetailContract.View {
 
+    @BindView(R.id.iv_band)
+    ImageView ivBand;
+
+    @BindView(R.id.content_frame)
+    FrameLayout contentFrame;
+
     @Inject
     BandDetailPresenter mPresenter;
 
     private SearchResult searchResult = null;
     private BandDetailsEventListener mEventListener = null;
+    private BandDetailComponentCustomView customView;
 
     public BandDetailFragment() {
     }
@@ -71,7 +83,13 @@ public class BandDetailFragment extends Fragment implements
         if (searchResult == null) {
             return;
         }
+        setupBandDetailComponentCustomView();
         mPresenter.getBandDetail(searchResult.getId());
+    }
+
+    private void setupBandDetailComponentCustomView() {
+        customView = new BandDetailComponentCustomView(getContext(), null);
+        contentFrame.addView(customView);
     }
 
     private void getDefaultArguments(Bundle bundle) {
@@ -85,6 +103,7 @@ public class BandDetailFragment extends Fragment implements
 
     @Override
     public void showError(String msg) {
+        mPresenter.unSubscribeBandDetail();
         mEventListener.showError(msg);
     }
 
@@ -97,5 +116,11 @@ public class BandDetailFragment extends Fragment implements
     @Override
     public void updateBandDetail(BandDetailResponse bandDetailResponse) {
         mPresenter.unSubscribeBandDetail();
+        Picasso.with(getContext())
+                .load(bandDetailResponse.getData().getPhoto())
+                .noPlaceholder()
+                .fit()
+                .into(ivBand);
+        customView.updateData(bandDetailResponse);
     }
 }

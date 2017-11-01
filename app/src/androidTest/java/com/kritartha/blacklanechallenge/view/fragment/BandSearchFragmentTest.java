@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
 
 import com.kritartha.blacklanechallenge.R;
-import com.kritartha.blacklanechallenge.adapter.SearchHistoryAdapter;
 import com.kritartha.blacklanechallenge.model.bandSearch.SearchResult;
 import com.kritartha.blacklanechallenge.view.activity.BandActivity;
 
@@ -15,7 +14,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,6 @@ import static junit.framework.Assert.assertNotNull;
  */
 @RunWith(AndroidJUnit4.class)
 public class BandSearchFragmentTest {
-
     private BandActivity mActivity;
     BandSearchFragment mFragment;
 
@@ -71,7 +68,7 @@ public class BandSearchFragmentTest {
         searchResult.setName("Led Zeppelin");
         searchResult.setGenre("Rock");
         searchResult.setCountry("UK");
-        items.add(searchResult);
+        items.add(searchResultOther);
 
         mActivity.runOnUiThread(new Runnable() {
             public void run() {

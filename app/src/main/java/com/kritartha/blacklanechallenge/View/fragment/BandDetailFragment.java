@@ -130,4 +130,8 @@ public class BandDetailFragment extends Fragment implements
                 .into(ivBand);
         customView.updateData(bandDetailResponse);
     }
+
+    public BandDetailComponentCustomView getBandDetailComponentCustomView() {
+        return customView;
+    }
 }

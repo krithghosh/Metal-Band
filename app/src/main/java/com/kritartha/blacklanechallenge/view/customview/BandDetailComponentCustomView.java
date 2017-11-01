@@ -71,11 +71,7 @@ public class BandDetailComponentCustomView extends LinearLayout {
 
     private void setupAdapter(Context context) {
         mAdapter = new BandAlbumAdapter(context, mAlbum);
-        mAdapter.setOnItemClickListener(new BandAlbumAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Discography item) {
-
-            }
+        mAdapter.setOnItemClickListener(item -> {
         });
     }
 

@@ -1,5 +1,7 @@
 package com.kritartha.blacklanechallenge.component;
 
+import com.kritartha.blacklanechallenge.utils.AppScheduler;
+import com.kritartha.blacklanechallenge.utils.AppSchedulerModule;
 import com.kritartha.blacklanechallenge.view.activity.BandActivity;
 import com.kritartha.blacklanechallenge.view.fragment.BandDetailFragment;
 import com.kritartha.blacklanechallenge.view.fragment.BandSearchFragment;
@@ -15,6 +17,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import retrofit2.Retrofit;
+import rx.Scheduler;
 
 /**
  * Created by kritarthaghosh on 29/10/17.
@@ -22,10 +25,13 @@ import retrofit2.Retrofit;
 @Singleton
 @Component(modules = {
         ApplicationModule.class,
+        AppSchedulerModule.class,
         NetworkModule.class,
         RepositoryModule.class
 })
 public interface ApplicationComponent {
+
+    AppScheduler scheduler();
 
     Retrofit retrofit();
 

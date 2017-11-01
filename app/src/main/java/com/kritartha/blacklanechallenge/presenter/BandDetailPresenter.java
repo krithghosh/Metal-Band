@@ -5,6 +5,8 @@ import android.util.Log;
 import com.kritartha.blacklanechallenge.model.bandDetail.BandDetailResponse;
 import com.kritartha.blacklanechallenge.model.bandSearch.SearchResult;
 import com.kritartha.blacklanechallenge.repository.DataRepository;
+import com.kritartha.blacklanechallenge.utils.AppScheduler;
+import com.kritartha.blacklanechallenge.utils.IScheduler;
 import com.kritartha.blacklanechallenge.view.BandDetailContract;
 
 import javax.inject.Inject;
@@ -21,13 +23,15 @@ import rx.schedulers.Schedulers;
 public class BandDetailPresenter implements BandDetailContract.Presenter {
     private static final String TAG = "BandDetailPresenter";
 
-    private DataRepository mDataRepository;
+    private AppScheduler mIScheduler;
     private BandDetailContract.View mView;
+    private DataRepository mDataRepository;
     private Subscription mBandDetailSubscription;
 
     @Inject
-    public BandDetailPresenter(DataRepository mDataRepository) {
+    public BandDetailPresenter(DataRepository mDataRepository, AppScheduler mIScheduler) {
         this.mDataRepository = mDataRepository;
+        this.mIScheduler = mIScheduler;
     }
 
     @Override
@@ -50,8 +54,8 @@ public class BandDetailPresenter implements BandDetailContract.Presenter {
     @Override
     public void getBandDetail(String id) {
         mBandDetailSubscription = mDataRepository.getBandDetail(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(mIScheduler.backgroundThread())
+                .observeOn(mIScheduler.mainThread())
                 .subscribe(new Subscriber<BandDetailResponse>() {
                     BandDetailResponse bandDetailResponse = null;
 

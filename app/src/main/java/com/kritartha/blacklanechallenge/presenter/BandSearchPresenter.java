@@ -2,6 +2,8 @@ package com.kritartha.blacklanechallenge.presenter;
 
 import android.util.Log;
 
+import com.kritartha.blacklanechallenge.utils.AppScheduler;
+import com.kritartha.blacklanechallenge.utils.IScheduler;
 import com.kritartha.blacklanechallenge.view.BandSearchContract;
 import com.kritartha.blacklanechallenge.model.bandSearch.BandData;
 import com.kritartha.blacklanechallenge.model.bandSearch.BandSearchResponse;
@@ -25,14 +27,16 @@ import rx.schedulers.Schedulers;
 public class BandSearchPresenter implements BandSearchContract.Presenter {
     private static final String TAG = "BandSearchPresenter";
 
+    private AppScheduler mIScheduler;
     private DataRepository mDataRepository;
     private BandSearchContract.View mView;
     private Subscription mBandSearchSubscription;
     private Subscription mBandHistorySubscription;
 
     @Inject
-    public BandSearchPresenter(DataRepository mDataRepository) {
+    public BandSearchPresenter(DataRepository mDataRepository, AppScheduler mIScheduler) {
         this.mDataRepository = mDataRepository;
+        this.mIScheduler = mIScheduler;
     }
 
     @Override
@@ -49,8 +53,8 @@ public class BandSearchPresenter implements BandSearchContract.Presenter {
     @Override
     public void getBandSearch(String keyword) {
         mBandSearchSubscription = mDataRepository.getBandSearch(keyword)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(mIScheduler.backgroundThread())
+                .observeOn(mIScheduler.mainThread())
                 .subscribe(new Subscriber<BandSearchResponse>() {
                     BandSearchResponse response = null;
 
@@ -98,8 +102,8 @@ public class BandSearchPresenter implements BandSearchContract.Presenter {
     @Override
     public void getBandHistory() {
         mBandHistorySubscription = mDataRepository.getBandMetadata()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(mIScheduler.backgroundThread())
+                .observeOn(mIScheduler.mainThread())
                 .subscribe(new Subscriber<List<SearchResult>>() {
                     @Override
                     public void onCompleted() {

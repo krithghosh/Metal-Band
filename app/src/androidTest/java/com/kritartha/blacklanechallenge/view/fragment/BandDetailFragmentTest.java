@@ -54,13 +54,15 @@ public class BandDetailFragmentTest {
         SearchResult searchResult = Mockito.mock(SearchResult.class);
         mActivity.runOnUiThread(() -> {
             mActivity.getBandDetails(searchResult, TRUE);
-            this.mFragment = (BandDetailFragment) mActivity.getSupportFragmentManager()
-                    .findFragmentById(R.id.content_frame);
         });
+        Thread.sleep(500);
     }
 
     @Test
     public void updateBandDetail_setsBandDetailData() {
+
+        this.mFragment = (BandDetailFragment) mActivity.getSupportFragmentManager()
+                .findFragmentById(R.id.content_frame);
 
         // Mocks Data
         BandDetailResponse response = new BandDetailResponse();

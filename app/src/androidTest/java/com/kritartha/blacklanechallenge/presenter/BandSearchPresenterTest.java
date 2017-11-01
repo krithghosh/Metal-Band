@@ -61,7 +61,6 @@ public class BandSearchPresenterTest {
 
         mBandSearchPresenter.getBandHistory();
         verify(mDataRepository).getBandMetadata();
-        //verify(mBandSearchView).updateSearchHistoryList(searchResultList);
     }
 
     @Test
@@ -71,7 +70,6 @@ public class BandSearchPresenterTest {
         BandData bandData = new BandData();
         bandData.setSearchResults(searchResultList);
         bandSearchResponse.setData(bandData);
-        List<String> namesList = new ArrayList<>();
         when(mDataRepository.getBandSearch(anyString()))
                 .thenReturn(Observable.create(subscriber -> {
                     subscriber.onNext(bandSearchResponse);
@@ -82,7 +80,5 @@ public class BandSearchPresenterTest {
         mBandSearchPresenter.getBandSearch(anyString());
 
         verify(mDataRepository).getBandSearch(anyString());
-        /*verify(mBandSearchView).updateSearchList(bandSearchResponse.getData().getSearchResults(),
-                namesList);*/
     }
 }

@@ -32,6 +32,12 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
+    <style name="small_medium_text" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/color_accent</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="small_text" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/color_accent</item>
         <item name="android:textSize">@dimen/text_small</item>

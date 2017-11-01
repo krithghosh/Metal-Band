@@ -88,7 +88,6 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    // Set this dependency to use JUnit 4 rules
     androidTestCompile('com.android.support.test:rules:0.5') {
         exclude module: 'support-annotations'
     }

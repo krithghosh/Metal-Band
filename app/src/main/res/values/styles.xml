@@ -24,6 +24,7 @@
         <item name="android:textColor">@color/color_primary_dark</item>
         <item name="android:textSize">@dimen/text_large</item>
         <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="normal_text" parent="TextAppearance.AppCompat">
@@ -47,7 +48,7 @@
     <style name="search_history_heading" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/color_primary_99</item>
         <item name="android:textSize">@dimen/text_large</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="category_heading" parent="TextAppearance.AppCompat">

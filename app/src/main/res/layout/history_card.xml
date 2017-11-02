@@ -9,8 +9,8 @@
     android:layout_marginTop="@dimen/card_padding_half"
     android:background="@color/color_white"
     android:orientation="vertical"
+    app:cardElevation="2dp"
     app:cardCornerRadius="@dimen/radius_2"
-    app:cardElevation="@dimen/elevation_high"
     app:contentPadding="@dimen/card_padding_half">
 
     <TextView

@@ -24,9 +24,6 @@ public class BandMetadataTable {
     public static final String QUERY_ALL = "SELECT " + ID + ", " + NAME + ", " + GENRE + ", "
             + COUNTRY + " FROM " + TABLE;
 
-    public static final String QUERY_BY_KIOSK_EXIST = "SELECT " + ID + ", " + NAME + ", " + GENRE + ", "
-            + COUNTRY + " FROM " + TABLE + " WHERE " + ID + " =?";
-
     public static final String CREATE_TABLE = ""
             + "CREATE TABLE " + TABLE + "("
             + ID + " TEXT PRIMARY KEY NOT NULL,"
